@@ -1,0 +1,7 @@
+.chessboard-component{
+  display: flex;
+  flex: 1;
+  max-width: 100%;
+  max-height: 100%;
+  min-width: 800px;
+}

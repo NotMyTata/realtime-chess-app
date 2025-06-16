@@ -1,0 +1,9 @@
+.sidebar-component{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 300px;
+  max-width: 600px;
+  padding: 10px;
+  gap: 20px;
+}
