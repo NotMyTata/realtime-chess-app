@@ -3,5 +3,5 @@
   flex-direction: column;
   height: 300px;
   border-radius: 12px;
-  box-shadow: 1px 1px 10px rgb(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 10px rgba(170, 60, 60, 0.2);
 }
