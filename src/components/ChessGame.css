@@ -1,0 +1,11 @@
+.chessgame-component{
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  gap: 20px;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1)
+}

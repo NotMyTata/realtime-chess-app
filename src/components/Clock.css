@@ -1,0 +1,9 @@
+.clock-component {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #262522;;
+  color: var(--text-primary);
+  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.2);
+}

@@ -3,21 +3,17 @@
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
 }
 
-.chatform-component, .chatform-component > * {
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-}
-
 .input-msg{
-  flex: 1;
+  flex: 5;
+  margin: 0;
   padding: 8px;
+  border-radius: 0;
+  border-bottom-left-radius: 12px;
 }
 
 .send-btn{
+  flex: 1;
   padding: 8px;
-}
-
-.send-btn:hover{
-  cursor: pointer;
-  background-color: #747aab;
+  border-radius: 0;
+  border-bottom-right-radius: 12px;
 }

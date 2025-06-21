@@ -8,7 +8,7 @@ import './ChessBoard.css';
 export const ChessBoard = () => {
 
   const [game, setGame] = useState<Chess>(new Chess());
-  const [history, setHistory] = useState<string[]>([]);
+  const [moves, setMoves] = useState<string[]>([]);
 
   function getGameStatus(){
     
@@ -27,13 +27,13 @@ export const ChessBoard = () => {
       : game.turn() === 'w' ? 'White Turn' : 'Black Turn';
   }
 
-  function onDrop(source: string, target: string, piece?: string): boolean {
+  function onDrop(source: string, target: string): boolean {
     try {
-      const move = game.move({from: source, to: target});
+      const isValidMove = game.move({from: source, to: target});
       
-      if(move){
+      if(isValidMove){
         setGame(new Chess(game.fen()));
-        setHistory(history => [...history, target])
+        setMoves(moves => [...moves, target])
         return true;
       }
 
@@ -48,13 +48,13 @@ export const ChessBoard = () => {
 
   return (
     <div className='chessboard-component'>
-      {getGameStatus()}
       <Chessboard 
         position={ game.fen() }
         arePremovesAllowed={true}
         clearPremovesOnRightClick={true}
         snapToCursor={true}
-        onPieceDrop={ onDrop } />
+        onPieceDrop={ onDrop }
+         />
     </div>
   );
 }

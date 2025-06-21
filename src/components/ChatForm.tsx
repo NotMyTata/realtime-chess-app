@@ -10,8 +10,8 @@ export const ChatForm = () => {
 
   return (
     <div className="chatform-component">
-      <input className="input-msg" type="text" placeholder='Type a message...'/>
-      <button className="send-btn" onClick={handleSend}>Send</button>
+      <input className="input-msg input-field" type="text" placeholder='Type a message...'/>
+      <button className="send-btn button-primary" onClick={handleSend}>Send</button>
     </div>
   );
 }
