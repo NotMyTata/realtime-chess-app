@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ChessIcon, ChatIcon, RoomIcon, DeviceIcon, CrownIcon } from '../components/Icons';
 import { supabase } from './supabase-client';
-import { Chess, DEFAULT_POSITION } from 'chess.js';
 
 export default function Page() {
   const [roomId, setRoomId] = useState('');
@@ -12,35 +11,11 @@ export default function Page() {
 
   const handleCreateRoom = async () => {
     const newRoomId = Math.random().toString(36).substring(2, 8);
-
-    const { error } = await supabase.from('games').insert({room_id: newRoomId});
-
-    if (error) {
-      console.log("Error while creating new room: ", error.message);
-    }
-
     router.push(`/play/${newRoomId}`);
   };
 
   const handleJoinRoom = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (roomId.length !== 6) return;
-
-    const { error, data } = await supabase.from("games").select("*").eq("room_id", roomId);
-
-    if (error) {
-      console.log("Error while joining existing room: ", error.message);
-      setRoomId('');
-      return;
-    }
-
-    if (data.length === 0) {
-      console.log("No such room exist with the id: ", roomId);
-      setRoomId('');
-      return;
-    }
-
     router.push(`/play/${roomId}`);
   };
 

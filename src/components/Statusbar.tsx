@@ -1,13 +1,13 @@
 import './Statusbar.css';
 
-export const Statusbar = ({ whiteTime, blackTime, currentTurn }: { whiteTime: number, blackTime: number, currentTurn: string}) => {
+export const Statusbar = ({ whiteTime, blackTime, currentTurn, playerColor }: { whiteTime: number, blackTime: number, currentTurn: string, playerColor: 'w' | 'b' | null}) => {
   const formatTime = (seconds: number) =>
     `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
 
   return (
     <div className='statusbar-component'>
       <div className='clock-component'>
-        <p className="clock-text opponent-clock">{formatTime(blackTime)}</p>
+        <p className="clock-text opponent-clock">{formatTime(playerColor === 'w'? blackTime : whiteTime)}</p>
       </div>
 
       <div className='turn-component'>
@@ -18,7 +18,7 @@ export const Statusbar = ({ whiteTime, blackTime, currentTurn }: { whiteTime: nu
       </div>
 
       <div className='clock-component'>
-        <p className="clock-text player-clock">{formatTime(whiteTime)}</p>
+        <p className="clock-text player-clock">{formatTime(playerColor === 'w'? whiteTime : blackTime)}</p>
       </div>
     </div>
   );
