@@ -4,4 +4,42 @@
   height: 300px;
   border-radius: 12px;
   box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.2);
+  max-width: 330px;
+}
+
+.chatform-component{
+  display: flex;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+.input-msg{
+  flex: 5;
+  margin: 0;
+  padding: 8px;
+  border-radius: 0;
+  border-bottom-left-radius: 12px;
+}
+
+.send-btn{
+  flex: 1;
+  padding: 8px;
+  border-radius: 0;
+  border-bottom-right-radius: 12px;
+}
+
+.chatbox-component{
+  flex: 1;
+  padding: 20px;
+}
+
+.chatbox-component {
+  background: #262522;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  border: 2.5px solid #7c3aed;  
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-wrap: anywhere;
 }

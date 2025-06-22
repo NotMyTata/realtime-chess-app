@@ -1,6 +1,5 @@
 .statusbar-component{
   display: flex;
-  flex: 1;
   flex-direction: column;
   width: fit-content;
   max-width: 600px;
@@ -9,4 +8,35 @@
   font-weight: bold;
   text-align: center;
   justify-content: space-between;
+}
+
+.clock-component {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  border: 2.5px solid #7c3aed;  
+  background-color: #262522;;
+  color: var(--text-primary);
+  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.2);
+}
+
+.turn-text-w-container, .turn-text-b-container {
+  text-align: center;
+  justify-content: space-evenly;
+  padding: 15px;
+  border-radius: 12px;
+  width: 100px;
+  border: 2.5px solid #7c3aed;  
+}
+
+.turn-text-w-container{
+  background-color: #ffffff;
+  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.2);
+  color: black;
+}
+
+.turn-text-b-container{
+  background-color: #262522;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  color: white;
 }

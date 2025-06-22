@@ -1,7 +1,13 @@
-.movelist-component{
+.movelist-component {
   flex: 1;
-  border: 2px solid #26252200;
+  border: 2.5px solid #7c3aed;  
   border-radius: 12px;
   padding: 10px;
   box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.2);
+  
+}
+
+.movelist-table-container {
+  max-height: 300px;
+  overflow: auto;
 }

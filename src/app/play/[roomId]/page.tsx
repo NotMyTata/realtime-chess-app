@@ -1,18 +1,12 @@
-import { socket } from 'socket.js';
+import { supabase } from 'app/supabase-client';
 import ChessGame from 'components/ChessGame';
 
-interface Params {
-  roomId: string,
-}
-
-export default async function Page({ params }: { params: Params }) {
-  const { roomId } = await params;
-
-  socket.emit('join-room', roomId);
+export default async function Page({ params }: {params: {roomId: string}}) {
+  const roomId = (await params).roomId;
 
   return (
     <div className='main-container'>
-      <ChessGame />;
+      <ChessGame roomId={roomId.toString()} />
     </div>
   );
 }

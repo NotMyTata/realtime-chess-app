@@ -13,13 +13,12 @@
   },
   "dependencies": {
     "@socket.io/admin-ui": "^0.5.1",
+    "@supabase/supabase-js": "^2.50.0",
     "chess.js": "^1.4.0",
     "next": "15.3.3",
     "react": "^19.0.0",
     "react-chessboard": "^4.7.3",
-    "react-dom": "^19.0.0",
-    "socket.io": "^4.8.1",
-    "socket.io-client": "^4.8.1"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

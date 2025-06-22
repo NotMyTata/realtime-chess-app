@@ -1,6 +1,4 @@
-import ChessBoard from 'components/ChessBoard';
 import Sidebar from 'components/Sidebar';
-import './[roomId]/page.css';
 
 export default function Page() {
   return (
@@ -26,8 +24,7 @@ export default function Page() {
           Static Chess Game
         </div>
         <div className="game-container" style={{ gap: 32, minHeight: 500 }}>
-          <ChessBoard />
-          <Sidebar />
+          
         </div>
       </div>
     </div>
