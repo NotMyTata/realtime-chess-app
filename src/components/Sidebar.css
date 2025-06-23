@@ -15,7 +15,7 @@
   margin-left: 5px;
 }
 
-.rematch-button:disabled {
+button:disabled {
   filter: brightness(75%);
   cursor: not-allowed;;
 }

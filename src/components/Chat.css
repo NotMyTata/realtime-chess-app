@@ -3,7 +3,7 @@
   flex-direction: column;
   height: 300px;
   border-radius: 12px;
-  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0px 5px 1px var(--accent-primary);
   max-width: 330px;
 }
 
@@ -33,12 +33,12 @@
 }
 
 .chatbox-component {
-  background: #262522;
+  background: var(--accent-secondary);
   border-radius: 8px;
   padding: 12px;
   margin-bottom: 8px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  border: 2.5px solid #7c3aed;  
+  border: 2.5px solid var(--accent-primary);  
   max-height: 300px;
   overflow-y: auto;
   overflow-wrap: anywhere;

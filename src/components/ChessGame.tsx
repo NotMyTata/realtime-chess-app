@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from 'react';
 import { supabase } from "app/supabase-client";
 import type { RealtimeChannel } from '@supabase/supabase-js';
 import { Message } from "./Chat";
+import Banner from "./Banner";
 
 export interface GameData {
   fen: string;
@@ -22,7 +23,6 @@ export interface GameData {
   winner: string | null;
   move_history: string[];
   last_move_time: string;
-  request: 'rematch' | 'draw' | 'resign' | null;
 }
 
 const ChessGame = ({ roomId }: { roomId: string }) => {
@@ -42,8 +42,6 @@ const ChessGame = ({ roomId }: { roomId: string }) => {
   const moveSoundRef = useRef<HTMLAudioElement | null>(null);
   const captureSoundRef = useRef<HTMLAudioElement | null>(null);
   const notifySoundRef = useRef<HTMLAudioElement | null>(null);
-
-  const db = 'games';
 
   useEffect(() => {
     moveSoundRef.current = new Audio('/sounds/move-self.mp3');
@@ -113,7 +111,7 @@ const ChessGame = ({ roomId }: { roomId: string }) => {
       setPlayerId(userId);
 
       const { data: existingGame, error: fetchError } = await supabase
-        .from(db)
+        .from('games')
         .select('*')
         .eq('room_id', roomId)
         .single();
@@ -129,7 +127,7 @@ const ChessGame = ({ roomId }: { roomId: string }) => {
         if (!existingGame.white_player_id) {
           // Join as white
           const { data, error } = await supabase
-            .from(db)
+            .from('games')
             .update({ white_player_id: userId })
             .eq('room_id', roomId)
             .select()
@@ -142,7 +140,7 @@ const ChessGame = ({ roomId }: { roomId: string }) => {
         } else if (!existingGame.black_player_id && existingGame.white_player_id !== userId) {
           // Join as black
           const { data, error } = await supabase
-            .from(db)
+            .from('games')
             .update({ 
               black_player_id: userId,
               status: 'active',
@@ -171,7 +169,7 @@ const ChessGame = ({ roomId }: { roomId: string }) => {
       } else {
         // Create new game
         const { data, error } = await supabase
-          .from(db)  
+          .from('games')  
           .insert({
             room_id: roomId,
             fen: gameState.fen(),
@@ -190,7 +188,7 @@ const ChessGame = ({ roomId }: { roomId: string }) => {
               // Room was created by another client in the meantime
               // Re-fetch the existing game and continue
               const { data: retryGame, error: retryError } = await supabase
-                .from(db)
+                .from('games')
                 .select('*')
                 .eq('room_id', roomId)
                 .single();
@@ -231,7 +229,7 @@ const ChessGame = ({ roomId }: { roomId: string }) => {
         {
           event: '*',
           schema: 'public',
-          table: db,
+          table: 'games',
           filter: `room_id=eq.${roomId}`,
         },
         (payload) => {
@@ -265,7 +263,7 @@ const ChessGame = ({ roomId }: { roomId: string }) => {
     
     try {
       await supabase
-        .from(db)
+        .from('games')
         .update({
           status: 'finished',
           winner: winner,
@@ -304,7 +302,7 @@ const ChessGame = ({ roomId }: { roomId: string }) => {
     if (gameEndData) {
       try {
         await supabase
-          .from(db)
+          .from('games')
           .update({
             ...gameEndData,
           })
@@ -357,7 +355,7 @@ const ChessGame = ({ roomId }: { roomId: string }) => {
       const newTime = currentTurn === 'w' ? whiteTime : blackTime;
       
       const { error } = await supabase
-        .from(db)
+        .from('games')
         .update({
           fen: gameCopy.fen(),
           turn: gameCopy.turn(),
@@ -382,6 +380,27 @@ const ChessGame = ({ roomId }: { roomId: string }) => {
     }
   }
 
+  const renderBanner = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('game_requests')
+        .select()
+        .eq('room_id', roomId)
+        .single();
+
+      if (error) throw error;
+
+      return (
+        <Banner
+          roomId={roomId}
+          playerColor={playerColor} />
+      );
+    } catch (error) {
+      console.error('Error while rendering banner: ', error);
+    }
+    return(<div></div>);
+  }
+
   if (errorMessage) {
     return (
       <div className="chessgame-component">
@@ -394,11 +413,15 @@ const ChessGame = ({ roomId }: { roomId: string }) => {
 
   return (
     <div className="chessgame-component">
+      <Banner
+        roomId={roomId}
+        playerColor={playerColor} 
+      />
       <Statusbar 
         whiteTime={whiteTime}
         blackTime={blackTime}
         currentTurn={gameState.turn().toString()}
-        playerColor={playerColor}
+        playerColor={playerColor} 
       />
       <div className="chessboard">
         <Chessboard
@@ -413,7 +436,7 @@ const ChessGame = ({ roomId }: { roomId: string }) => {
         />
       </div>
       <Sidebar
-        isGameOver={gameState.isGameOver()}
+        gameStatus={gameStatus}
         moveHistory={moveHistory}
         roomId={roomId}
         playerColor={playerColor}

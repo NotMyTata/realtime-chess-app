@@ -3,8 +3,7 @@
   border: 2.5px solid #7c3aed;  
   border-radius: 12px;
   padding: 10px;
-  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.2);
-  
+  box-shadow: 0px 0px 5px 1px var(--accent-primary);
 }
 
 .movelist-table-container {

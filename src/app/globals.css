@@ -5,6 +5,7 @@
   --text-primary: #ffffff;
   --text-secondary: #a0aec0;
   --accent-primary: #9333ea;
+  --accent-secondary: #262522;
   --accent-hover: #7e22ce;
 }
 
@@ -81,7 +82,20 @@ body {
   width: 100%;
 }
 
-.button-primary:hover {
+.button-secondary {
+  background-color: var(--accent-secondary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  border: 1px solid var(--accent-primary);  
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+  box-shadow: inset 0px 0px 5px 1px var(--accent-primary);
+}
+
+.button-primary:hover, .button-secondary:hover {
   background-color: var(--accent-hover);
 }
 

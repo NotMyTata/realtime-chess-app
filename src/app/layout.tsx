@@ -13,7 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Realtime Chess App"
+  title: "Realtime Chess App",
+  icons: "/icon.png"
 };
 
 export default function RootLayout({
